@@ -1,7 +1,7 @@
 ---
 layout: page
 title: The knowledge base
-excerpt: "An archive of articles sorted by date."
+excerpt: "Mainly summarized from other references specified in the top of post"
 search_omit: true
 ---
 
