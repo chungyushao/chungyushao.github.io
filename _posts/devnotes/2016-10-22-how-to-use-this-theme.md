@@ -17,6 +17,7 @@ author: chungyu
 * Add entry in `{home}/_data/navigation.yml`
 * Put the cooresponding folder under `{home}/_posts/new_category`
 * Put the index.md folder under `{home}/new_category`
+  * modify `... site.categories.{new_category}`
 
 ## 3. How to modify author properties:
 

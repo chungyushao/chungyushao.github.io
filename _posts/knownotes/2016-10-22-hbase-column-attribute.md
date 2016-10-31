@@ -4,7 +4,6 @@ title: "HBase Column Attribute"
 excerpt: "Compression,  Data Block Encoding"
 categories: knownotes
 tags: [hbase]
-modified: 2016-10-22
 comments: true
 share: true
 author: chungyu
@@ -16,7 +15,7 @@ author: chungyu
 * attempts to limit duplication of information in keys, taking advantage of some of the fundamental designs and patterns of HBase, such as sorted row keys and the schema of a given table.
 * **Prefix**:
 	* If you have long keys (compared to the values) or many columns, use a prefix encoder.
-* **Diff**: 
+* **Diff**:
 	* Diff encoding is disabled by default because writing and scanning are slower but more data is cached.
 * **Fast Diff**:
 	* Fast Diff works similar to Diff, but uses a faster implementation.
@@ -32,7 +31,7 @@ author: chungyu
 * In most cases, enabling Snappy or LZO by default is a good choice, because they have a low performance overhead and provide space savings.
 	* none
 	* Snappy
-		* Snappy or LZO for hot data, which is accessed frequently. 
+		* Snappy or LZO for hot data, which is accessed frequently.
 	* LZO
 	* LZ4
 	* GZ

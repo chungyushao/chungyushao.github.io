@@ -1,16 +1,15 @@
 ---
 layout: post
 title: "Numpy basics"
-excerpt: "numpy array creation, attribute, access, math operation, broadcasting"
+excerpt: "numpy array creation, attribute, access, math operation"
 categories: knownotes
 tags: [python, numpy]
-modified: 2016-10-24
 comments: true
 share: true
 author: chungyu
 ---
 
-> Mainly from [Python Numpy Tutorial](http://cs231n.github.io/python-numpy-tutorial/#numpy) 
+> Mainly from [Python Numpy Tutorial](http://cs231n.github.io/python-numpy-tutorial/#numpy)
 
 # Array creation
 ```python
@@ -90,7 +89,7 @@ bool_idx = (a > 2)  # Find the elements of a that are bigger than 2;
                     # this returns a numpy array of Booleans of the same
                     # shape as a, where each slot of bool_idx tells
                     # whether that element of a is > 2.
-            
+
 print bool_idx      # Prints "[[False False]
                     #          [ True  True]
                     #          [ True  True]]"
@@ -154,9 +153,9 @@ print x * 2
 
 
 ###### `dot`
-* inner products of vectors, 
-* to multiply a vector by a matrix, and 
-* to multiply matrices. 
+* inner products of vectors,
+* to multiply a vector by a matrix, and
+* to multiply matrices.
 
 ```python
 v1 = np.array([9,10])
@@ -190,6 +189,7 @@ print np.sum(x, axis=1)  # Compute sum of each row; prints "[3 7]"
 ```
 
 # [Broadcasting](http://scipy.github.io/old-wiki/pages/EricsBroadcastingDoc)
+> details in other notes!
 ```python
 
 # Compute outer product of vectors
