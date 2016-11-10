@@ -103,6 +103,44 @@ print a[bool_idx]  # Prints "[3 4 5 6]"
 print a[a > 2]     # Prints "[3 4 5 6]"
 ```
 
+###### Iterating
+
+```python
+X = np.random.randn(6,10)
+X[0] # 0th row
+X.T[0] # 0th column
+for Xi in X:
+    Xi # iterates over each row of X
+for Xj  in X.T:
+    Xj # iterates over each column of X
+for i, Xi in enumerate(X):
+    i, Xi # iterates and enumerates each row of X, nicer than doing X[i] within the loop
+```
+
+###### Finding minimum's value/ index
+
+```python
+X = np.arange(10)
+np.random.shuffle(X)
+# array([7, 5, 4, 3, 0, 1, 6, 2, 8, 9])
+X = X.reshape(2, 5)
+# array([[7, 5, 4, 3, 0],
+#        [1, 6, 2, 8, 9]])
+
+X.min(axis = 0)  # min from each row of each column
+# array([1, 5, 2, 3, 0])
+
+X.min(axis = 1) # min from each column of each row
+# array([0, 1])
+
+X.argmin(axis = 0) # row index that is min of each column
+# array([1, 0, 1, 0, 0])
+
+X.argmin(axis = 1) # column index that is min of each row
+# array([4, 0])
+```
+
+
 # Math operation
 
 ###### Basic mathematical functions operate elementwise on arrays
@@ -190,6 +228,7 @@ print np.sum(x, axis=1)  # Compute sum of each row; prints "[3 7]"
 
 # [Broadcasting](http://scipy.github.io/old-wiki/pages/EricsBroadcastingDoc)
 > details in other notes!
+
 ```python
 
 # Compute outer product of vectors
