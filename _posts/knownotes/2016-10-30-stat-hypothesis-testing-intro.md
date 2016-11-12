@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hypothesis Testing"
+title: "Hypothesis Testing Introduction"
 excerpt: "hypothesis testing"
 categories: knownotes
 tags: [statistics]
@@ -12,7 +12,7 @@ author: chungyu
 * 1. [JB Statistics](http://www.jbstatistics.com/)
 * 2. [PSU](https://onlinecourses.science.psu.edu/statprogram/node/136)
 
-# General idea of hypothesis testing:
+# General idea of hypothesis testing
 * **Making initial assumption**:
   * Turn question of interest into hypothesis about the value of parameter(s)
   * There will be
@@ -25,6 +25,11 @@ author: chungyu
 * **Collecting evidence (data)**.
 * **deciding whether to reject the initial assumption (accept the null hypothesis) or not**.
   * Based on certain **significance level**
+
+# Quick View of hypothesis testing
+![hypothesisquick1]({{site.url}}/images/stat/hypothesisquick1.png)
+![hypothesisquick2]({{site.url}}/images/stat/hypothesisquick2.png)
+
 
 # Example of hypothesis
 ![hypothesisex1]({{site.url}}/images/stat/hypothesisex1.png)
