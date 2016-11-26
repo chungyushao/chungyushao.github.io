@@ -3,7 +3,7 @@ layout: post
 title: "Credit Card"
 excerpt: "credit card notes"
 categories: life
-tags: [credit card]
+tags: [life]
 comments: true
 share: true
 author: chungyu

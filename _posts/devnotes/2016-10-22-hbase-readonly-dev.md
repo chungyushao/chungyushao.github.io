@@ -6,7 +6,7 @@ categories: devnote
 tags: [hbase]
 modified: 2016-10-22
 comments: true
-share: true
+share: false
 author: chungyu
 ---
 

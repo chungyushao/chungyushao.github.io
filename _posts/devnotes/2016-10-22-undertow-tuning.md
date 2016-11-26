@@ -6,7 +6,7 @@ categories: devnote
 tags: [undertow, server]
 modified: 2016-10-23
 comments: true
-share: true
+share: false
 author: chungyu
 ---
 
@@ -29,11 +29,11 @@ server = Undertow.builder()
 
 
 # Buffer Caches
-> * A Buffer is essentially a block of memory into which you can write data, which you can then later read again. 
+> * A Buffer is essentially a block of memory into which you can write data, which you can then later read again.
 > * Buffer memory access is much faster than physical access.
 
 # Task Keepalive
-> * The Task keepalive (default 60) controls the number of seconds to wait for the next request from the same client on the same connection. 
+> * The Task keepalive (default 60) controls the number of seconds to wait for the next request from the same client on the same connection.
 > * With Keep-Alives the browser gets to eliminate a full round trip for every request after the first, usually cutting full page load times in half.
 
 # IO Threads
@@ -41,13 +41,12 @@ server = Undertow.builder()
 > * The Task Max Threads has control on the max number of concurrent requests.
 
 # Buffer Pool
-> * Undertow is based on the Java NIO API 
+> * Undertow is based on the Java NIO API
 > 	* In the NIO library, all data is handled with Buffers. When data is read, it is read directly into a buffer. When data is written, it is written into a buffer.
 
 # Direct buffers
-> * direct buffers are allocated outside the Java heap; therefore, once allocated, their memory address is fixed for the lifetime of the buffer. 
+> * direct buffers are allocated outside the Java heap; therefore, once allocated, their memory address is fixed for the lifetime of the buffer.
 > * Having a fixed memory address in turn causes that the kernel can safely access them directly and, hence, direct buffers can be used more efficiently in I/O operations
 
 # Buffer size
 > * Provided that direct buffers are being used, the default 16kb buffers are optimal if maximum performance is required
-
