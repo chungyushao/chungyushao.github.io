@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The knowledge base
+title: Notes from internet resources!
 excerpt: "Mainly summarized from other references specified in the top of post"
 search_omit: true
 ---

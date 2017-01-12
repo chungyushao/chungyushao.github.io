@@ -12,7 +12,7 @@ author: chungyu
 * [ref1](http://www.ccyp.com/articles/26954/%E5%AE%87%E5%AE%99%E6%9C%80%E5%85%A8%E7%BE%8E%E5%9C%8B%E6%B1%BD%E8%BB%8A%E4%BF%9D%E9%9A%AA%E8%A9%B3%E8%A7%A3)
 * [ref2](http://posts.careerengine.us/p/5534f0df0bebbfa69e000038)
 * [ref3](http://www.moonbbs.com/thread-535744-1-1.html)
-
+* [其他參考](http://blog.tripplus.cc/5435/creditcardautorentalcoverage)
 
 
 # 保險種類
@@ -126,7 +126,7 @@ CDW：賠付車損
   * (e). Chase Fairmont Visa Card
   * (f). Chase Ink Bold and Plus.
   * other card
-  
+
 ---
 
 另外推薦AAA和USAA membership 其中USAA 是有Primary Liability Coverage的。。USAA 還有CDW 但是(The member is responsible for the first $5,000 of damage to a rental vehicle. This may be covered by insurance)

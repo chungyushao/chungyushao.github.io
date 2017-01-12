@@ -1,8 +1,8 @@
 # Site wide configuration
 
-title: Orbuluh
+title: Endless Learning
 locale: en_US
-description: Joey's notes,  
+description: Joey's Notes
 logo: site-logo.png
 search: true
 url: https://chungyushao.github.io/
@@ -37,9 +37,9 @@ exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.
 
 # Site owner
 owner:
-  name: Your Name
+  name: Chung-Yu Shao
   avatar: bio-photo.jpg
-  email: you@email.com
+  email: 
   disqus-shortname:
   twitter: #username
   facebook: #username
