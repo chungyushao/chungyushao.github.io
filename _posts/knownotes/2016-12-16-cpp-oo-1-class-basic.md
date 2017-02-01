@@ -14,12 +14,12 @@ author: chungyu
 # Struct and Class
 
 The only differences between structures and classes in C++ is that structure members default to `public` access and class members default to `private` access; and structure default to `public` inheritance, whereas classed to `private` inheritance.
-å
+
 # Class basics
 * Data member typically should be initialize by the class's constructor as **there is no default initialization for fundamental-type data members**
 * Even though a member function declared in a class definition may be defined outside that class definition using `::` (scope resolution operator), that member function is still within that class's scope.
 * If a member function is defined in a class's body, the member function is implicitly declared `inline`.
-* object didn't contain member functions, instead, only data. The compiler creates one copy of the member functions separate from all object of the class. All object of the class share this one copy. The function code is non-modifiable and can be shared among all objects of the class.
+* Object didn't contain member functions, instead, only data. The compiler creates one copy of the member functions separate from all object of the class. All object of the class share this one copy. The function code is non-modifiable and can be shared among all objects of the class.
 * Variables declared in a member function have `block scope` and are only known to the function.
   * If a member function defines a variable with the same name as a variable with `class scope`, the `class scope` variables is hidden in the function by the block-scope variable. (Can still accesses through scope resolution operator `::`)
 
@@ -63,7 +63,8 @@ Time::Time() : Time(0, 0, 0) {}
 // delegate to Time( int, int, int )
 Time::Time(int hour) : Time(hour, 0, 0) {}
 // delegate to Time( int, int, int )
-Time::Time(int hour, int minute) : Time( hour, minute, 0) {}// delegate to Time( int, int, int )
+Time::Time(int hour, int minute) : Time(hour, minute, 0) {}
+// delegate to Time( int, int, int )
 ```
 * A constructor must be a non-const membeer function, but it can still be used to initialize a `const` object.
 

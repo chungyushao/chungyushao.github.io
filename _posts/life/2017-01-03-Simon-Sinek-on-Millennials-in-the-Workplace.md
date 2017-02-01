@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Dogs <3"
+title: "Millennials"
 excerpt: "concept"
 categories: life
-tags: [eng, memo]
+tags: [english]
 comments: true
 share: true
 author: chungyu
