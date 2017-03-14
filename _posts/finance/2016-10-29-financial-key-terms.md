@@ -132,7 +132,7 @@ Trading practices employed by some high-frequency traders to make nearly risk-fr
 * A SIP’s latency in calculating the NBBO is generally higher than that of HFT firms (because of the latter’s faster computers and co-location), and it is this difference in latency – estimated by Lewis to occasionally reach as much as 25 milliseconds – that is at the core of predatory HFT activity. Nasdaq OMX Group and NYSE Euronext each run a SIP on behalf of the 11 exchanges in the U.S.
 
 # Smart Order Routers
-* Smart order routers (SORs) emerged as a result of the fragmentation of the U.S. equities markets. As traders came to understand that certain kinds of trades could be better handled by certain market centers, they began hard coding instructions into their trading systems accordingly.
+* Smart order routers (SORs) emerged as a result of the fragmentation of the U.S. equities markets. As traders came to understand that certaivn kinds of trades could be better handled by certain market centers, they began hard coding instructions into their trading systems accordingly.
 * This routing happens all along the trade process and is reported with varying degrees of transparency. The retail broker must disclose, in broad terms, where it sent customer orders in what is known as a Rule 606 Report.
 * The market centers themselves may, in turn, route orders away to other market centers. This information, along with details about the quality of executions on a stock-by-stock basis, is disclosed in what are known as Rule 605 Disclosure reports.
 
