@@ -67,16 +67,6 @@ author: chungyu
 5. 就投資策略而言，是指股票資產，與固定收益證券(債券)fixed income，以及現金cash合稱三大資產類別(principal assets classes)。
   * 投資人透過適當的資產配置，建構風險與報酬符合自己需要的投資組合。
 
-# Execution
-* An execution is the completion of a buy or sell order for a security. The execution of an order happens when it is completely filled, not when it is placed by the investor.
-* When the investor places the trade, it goes to a broker, who then determines the best way for it to be executed.
-* Brokers are required by law to give investors the best execution possible and can attempt to execute the transaction in the following ways:
-  * Order to the Floor - For stocks trading on exchanges such as the New York Stock Exchange (NYSE), the broker can direct your order to the floor of the stock exchange, or to a regional exchange. In some instances regional exchanges will pay a fee for the privilege to execute a broker's order, known as payment for order flow. Because your order is going through human hands, it can take some time for the floor broker to get to your order and fill it.
-  * Order to Third Market Maker - For stocks trading on an exchange like the NYSE, your brokerage can direct your order to what is called a third market maker. A third market maker is likely to receive the order if: A) they entice the broker with an incentive to direct the order to them or B) the broker is not a member firm of the exchange in which the order would otherwise be directed.
-  * Internalization - Internalization occurs when the broker decides to fill your order from the inventory of stocks your brokerage firm owns. This can make for quick execution. This type of execution is accompanied by your broker's firm making additional money on the spread.
-  * Electronic Communications Network (ECN) - ECNs automatically match buy and sell orders. These systems are used particularly for limit orders because the ECN can match by price very quickly.
-  * Order to Market Maker - For over-the-counter markets such as the Nasdaq, your broker can direct your trade to the market maker in charge of the stock you wish to purchase or sell. This is usually timely, and some brokers make additional money by sending orders to certain market makers (payment for order flow). This means your broker may not always be sending your order to the best possible market maker.
-
 # Bid-Ask Spread
 * The spread is the difference between the bid(買家希望出的價錢) and asking(賣家尋求出售的價錢) prices for a particular security.
   * Assume that Morgan Stanley Capital International wants to purchase 1,000 shares of XYZ stock at $10, and Merrill Lynch & Co. wants to sell 1,500 shares at $10.25. The spread is the difference between the asking price of $10.25 and the bid price $10, or 25 cents.
@@ -87,33 +77,15 @@ author: chungyu
 * The bid-ask spread is essentially a negotiation in progress. To be successful, traders must be willing to take a stand and walk away in the bid-ask process through limit orders.
   * By executing a market order without concern for the bid-ask and without insisting on a limit, traders are essentially confirming another trader's bid, creating a return for that trader.
 
-# Payment for order flow
-* In financial markets payment for order flow refers to the compensation that a broker receives, not from its client, but from a third party that wants to influence how the broker routes client orders
-* Market makers such as dealers and securities exchanges are willing to pay a broker for the right to transact with that broker's clients because they believe those clients will be uninformed traders—retail or other investors who are trading because of emotion or the need to raise cash and not because they know an asset is misvalued.
-* By purchasing what it expects to be uninformed order flow, a market-maker can buy at the bid and sell at the ask with less risk of trading at a loss than with an informed trader who knows that the market is mispricing the security.
-* Thus, market-makers who pay for order flow can capture the spread while reducing the risk that the spread is too narrow to adequately compensate them for the risk of loss.
-
 # Market Maker
 * A market maker is a broker-dealer firm that assumes the risk of holding a certain number of shares of a particular security in order to facilitate the trading of that security.
 * Each market maker competes for customer order flow by displaying buy and sell quotations for a guaranteed number of shares, and once an order is received from a buyer, the market maker immediately sells from its own inventory or seeks an offsetting order.
 * The Nasdaq is the prime example of an operation of market makers, given that there are more than 500 member firms that act as Nasdaq market makers, keeping the financial markets running efficiently.
 * All market makers are compensated for the risk of holding assets. The risk they face is a decline in the value of a security after it has been purchased from a seller and before it's sold to a buyer. Therefore, market makers charge a spread on each security that they cover. This is known as the bid-ask spread and is extremely common in financial transactions.
 
-# Electronic Communication Network (ECN)
-* An electronic communication network (ECN) is an automated system that matches buy and sell orders for securities. It connects major brokerages and individual traders so they can trade directly between themselves without going through a middleman and make it possible for investors in different geographic locations to quickly and easily trade with each other.
-* ECNs are computer-based systems that display the best available bid and ask quotes from multiple market participants, and then automatically match and execute orders. They not only facilitate trading on major exchanges during market hours, they are also used for after-hours trading and foreign currency trading. ECNs allow for automated trading, passive order matching and speedy execution.
-
 # Liquidity Rebates
 * Most exchanges have adopted a “maker-taker model” for subsidizing the provision of stock liquidity. In this model, investors and traders who put in limit orders typically receive a small rebate from the exchange upon execution of their orders because they are regarded as having contributed to liquidity in the stock, i.e. they are liquidity “makers.”
 * Conversely, those who put in market orders are regarded as “takers” of liquidity and are charged a modest fee by the exchange for their orders. While the rebates are typically fractions of a cent per share, they can add up to significant amounts over the millions of shares traded daily by high-frequency traders. Many HFT firms employ trading strategies specifically designed to capture as much of the liquidity rebates as possible.
-
-
-# Pinging
-* buy-side firms use algorithmic trading systems to break up large orders into much smaller ones and feed them steadily into the market so as to reduce the market impact of large orders. In order to detect the presence of such large orders, HFT firms place bids and offers in 100-share lots for every listed stock.
-
-* Once a firm gets a “ping” (i.e. the HFT’s small order is executed) or series of pings that alerts the HFT to the presence of a large buy-side order, it may engage in a predatory trading activity that ensures it a nearly risk-free profit at the expense of the buy-sider, who will end up receiving an unfavorable price for its large order. Pinging has been likened to “baiting” by some influential market players, since its sole purpose is to lure institutions with large orders to reveal their hand.
-
-
 
 # Arbitrage (套利)
 > 套利並不是一種長期投資策略，而是一種賺取短暫異常價差的短期交易策略。
@@ -126,17 +98,3 @@ Trading practices employed by some high-frequency traders to make nearly risk-fr
   * “Slow market arbitrage” or “latency arbitrage,” in which a high-frequency trader arbitrages minute price differences of stocks between various exchanges.
   * “Electronic front running,” which involves a HFT firm racing ahead of a large client order on an exchange, scooping up all the shares on offer at various other exchanges (if it is a buy order) or hitting all the bids (if it is a sell order), and then turning around and selling them to (or buying them from) the client and pocketing the difference.
   * “Rebate arbitrage” involves HFT activity that attempts to capture liquidity rebates offered by exchanges without really contributing to liquidity.
-
-# Securities Information Processor
-* The technology used to collect quote and trade data from different exchanges, collate and consolidate that data, and continuously disseminate real-time price quotes and trades for all stocks. The SIP calculates the National Best Bid and Offer (NBBO) for all stocks, but because of the sheer volume of data it has to handle, has a finite latency period.
-* A SIP’s latency in calculating the NBBO is generally higher than that of HFT firms (because of the latter’s faster computers and co-location), and it is this difference in latency – estimated by Lewis to occasionally reach as much as 25 milliseconds – that is at the core of predatory HFT activity. Nasdaq OMX Group and NYSE Euronext each run a SIP on behalf of the 11 exchanges in the U.S.
-
-# Smart Order Routers
-* Smart order routers (SORs) emerged as a result of the fragmentation of the U.S. equities markets. As traders came to understand that certaivn kinds of trades could be better handled by certain market centers, they began hard coding instructions into their trading systems accordingly.
-* This routing happens all along the trade process and is reported with varying degrees of transparency. The retail broker must disclose, in broad terms, where it sent customer orders in what is known as a Rule 606 Report.
-* The market centers themselves may, in turn, route orders away to other market centers. This information, along with details about the quality of executions on a stock-by-stock basis, is disclosed in what are known as Rule 605 Disclosure reports.
-
-
-
-Read more: High-Frequency Trading: A Primer | Investopedia http://www.investopedia.com/news/highfrequency-trading-primer/#ixzz4bB4b0iM2
-Follow us: Investopedia on Facebook
