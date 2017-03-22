@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Key terms"
+title: "Financial terms II - Order related"
 excerpt: "definitions"
 categories: finance
 tags: [finance]
@@ -62,3 +62,17 @@ author: chungyu
 * Fist, When a brokerage firm or investment bank trades on behalf of its clients, it earns revenues in the form of fees and commission dollars. These dollars can either be soft or hard, but they are normally a very small percentage of the total amount invested or the gains generated. Proprietary trading, on the other hand, allows an institution to realize 100% of the gains earned from an investment.
 * The second benefit is that the institution is able to stockpile an inventory of securities. This helps in two ways. First, any speculative inventory allows the institution to offer it to its clients when it might not have had it otherwise. Second, it helps these institutions prepare for down or illiquid markets when it becomes hard to purchase securities on the open market.
 * The final benefit is associated with the second. Proprietary trading allows a financial institution to become an influential market maker by providing liquidity on a specific security or group of securities.
+
+# Held
+* A reference to a long position in a security. The term "held," in the investment context, refers to securities or assets owned by an investor or trader. It may also refer to a situation where a security is temporarily unavailable for trading. In the latter case, the term "held" may not be used in isolation, but may be part of a larger, more descriptive term such as "held at the opening."
+* Stocks "held" generally refer to long positions or securities owned by investors, as opposed to short positions which may be referred to as stocks "sold short."
+* The term also appears as a matter of routine disclosure in the investment press. For example, in an article where an investment guru or other individual is expounding on his or her top picks, the disclosure about whether the writer held a long position in the stocks being discussed, would usually appear at the end of the article.
+
+# Not Held
+* A not-held order is a market or limit order that gives the broker or floor trader both time and price discretion to attempt to get the best possible price.
+* A person placing a not-held order exhibits great faith that the floor trader will be able to attain a better price than the current one. Although the floor trader has price and time discretion, he or she cannot be responsible for any losses that the shareholder may suffer as a result of this type of order. Often this type of order is applied to international equities to the fact that shareholders trust the trader's judgment more than they trust their own.
+
+
+
+Read more: Not-Held Order Definition | Investopedia http://www.investopedia.com/terms/n/notheldorder.asp#ixzz4bpxzfKoB
+Follow us: Investopedia on Facebook
