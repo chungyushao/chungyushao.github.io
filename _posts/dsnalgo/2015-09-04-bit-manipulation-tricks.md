@@ -9,10 +9,16 @@ share: true
 author: chungyu
 ---
 
-## Stephen's Trick
+# General Bit Operation
+* `&`: 通常用来将某变量中的某些位清0且同时保留其他位不变。也可以用来获取某变量中的某一位。
+* `|`: 通常用来将某变量中的某些位置1且保留其他位不变。
+* `^`: 通常用来将某变量中的某些位取反, 且保留其他位不变。
+* `>>`: 右移n位,就相当于左操作数除以 \$ 2^n \$
 
-- nums[0] <=> nums[~0] = nums[-1]
-- nums[1] <=> nums[~1] = nums[-2]
+## Stephen's Trick
+- `nums[0]` : `nums[~0] == nums[-1]`
+- `nums[1]` : `nums[~1] == nums[-2]`
+- `nums[i]` : `nums[~i] == nums[-i]`
 - 2's complement can give u the corresponding index from the end!
 
 ## [The Magic of XOR](http://www.cs.umd.edu/class/sum2003/cmsc311/Notes/BitOp/xor.html)
@@ -32,12 +38,13 @@ author: chungyu
 	- x ^ y = y ^ x
 		- XOR is commutative.
 
-{% highlight python %}
+```python
 def swap(x, y):
 	x = x ^ y ;
 	y = x ^ y ;
 	x = x ^ y ;
-{% endhighlight %}
+```
+
 
 ## LeetCode Questions for XOR
 
@@ -65,7 +72,7 @@ def isPowerOfTwo(x):
 	        x = abcdefgh  | a =     x  & mask1 = 0b0d0f0h
 	==> mask1 = 01010101  | b = (x>>1) & mask1 = 0a0c0e0g
 ---------------------------------------------------------
-	==>  a + b = 
+	==>  a + b =
 
 
 
