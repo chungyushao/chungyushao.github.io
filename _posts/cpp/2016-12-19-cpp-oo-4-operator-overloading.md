@@ -2,7 +2,7 @@
 layout: post
 title: "C++ OO4: operator overloading"
 excerpt: ""
-categories: knownotes
+categories: cpp
 tags: [C++]
 comments: true
 share: true

@@ -2,7 +2,7 @@
 layout: post
 title: "C++ Compiler Translation"
 excerpt: ""
-categories: knownotes
+categories: cpp
 tags: [C++]
 comments: true
 share: true

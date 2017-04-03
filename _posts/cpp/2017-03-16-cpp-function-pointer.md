@@ -2,7 +2,7 @@
 layout: post
 title: "C++ Function Pointer/Object"
 excerpt: ""
-categories: knownotes
+categories: cpp
 tags: [C++]
 comments: true
 share: true

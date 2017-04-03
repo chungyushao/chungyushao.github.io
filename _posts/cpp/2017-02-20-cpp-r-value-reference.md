@@ -2,7 +2,7 @@
 layout: post
 title: "C++ Rvalue references"
 excerpt: "LValue, RValue, `T &&`"
-categories: knownotes
+categories: cpp
 tags: [C++]
 comments: true
 share: true
@@ -12,6 +12,7 @@ author: chungyu
 > Noted from
 > * [C++ Rvalue References Explained By Thomas Becker](http://thbecker.net/articles/rvalue_references/section_01.html)
 > * [Cprogramming.com by Alex Allain](http://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html)
+? * [cplusplus.com](http://www.cplusplus.com/articles/y8hv0pDG/)
 
 
 ```cpp
@@ -74,6 +75,32 @@ cout << & x << endl; //same as below
 cout << & getRef() << endl;
 ```
 
+# Another view of lvalue
+* "non-const references cannot bind to temporary objects." --- C++ standard
+
+```cpp
+// Improperly declared function:  parameter should be const reference:
+void print_me_bad( std::string& s ) {
+    std::cout << s << std::endl;
+}
+
+// Properly declared function: function has no intent to modify s:
+void print_me_good( const std::string& s ) {
+    std::cout << s << std::endl;
+}
+
+std::string hello( "Hello" );
+
+print_me_bad( hello );  // Compiles ok; hello is not a temporary
+print_me_bad( std::string( "World" ) );  // Compile error; temporary object
+print_me_bad( "!" ); // Compile error; compiler wants to construct temporary
+                     // std::string from const char*
+
+print_me_good( hello ); // Compiles ok
+print_me_good( std::string( "World" ) ); // Compiles ok
+print_me_good( "!" ); // Compiles ok
+```
+
 # What is rvalue
 * An rvalue is an expression that is not an lvalue.
   * An expression is an rvalue if it results in a temporary object.
@@ -107,24 +134,52 @@ printReference (const String& str) { cout << str; }
 printReference (String&& str) { cout << str; }
 
 string author("alex");
-printReference(author); // calls the first printReference function, taking an lvalue reference
-printReference(getName()); // calls the second printReference function, taking a mutable rvalue reference
+printReference(author);
+// calls the first printReference function,
+// taking an lvalue reference
+
+printReference(getName());
+// calls the second printReference function,
+// taking a mutable rvalue reference
 ```
 
 * the `printReference` function taking a const lvalue reference will accept any argument that it's given, whether it be an lvalue or an rvalue, and regardless of whether the lvalue or rvalue is mutable or not.
-  * However, when the presence of the second overload, `printReference` will be given all values except mutable rvalue-references.
+  * **However, when the presence of the second overload, `printReference` will be given all values except mutable rvalue-references.**
     * The "branching" effect right reference provides
-  * This kind of overload should occur only for copy constructors and assignment operators, for the purpose of achieving move semantics
+  * **This kind of overload should occur only for copy constructors and assignment operators, for the purpose of achieving move semantics**
 
 > rvalue reference version of the method is like the secret back door entrance to the club that you can only get into if you're a temporary object
 
 # Move Semantics
 
 ```cpp
-X foo();
-X x;
-// perhaps use x in various ways
-x = foo();
+#include <iostream>
+using namespace std;
+
+struct X {
+	X(int v) : v_(v) { cout << "Construct " << v_ << endl; }
+	X(const X& rhs) : v_(rhs.v_) { cout << "Cpy " << v_ << endl; }
+	~X() { cout << "Destruct " << v_ << endl; }
+	int v_;
+};
+
+X foo() {
+	cout << "into foo" << endl;
+	return X(2);
+}
+
+int main() {
+	X x(1);
+	x = foo();
+}
+
+/*
+  Construct 1
+  into foo
+  Construct 2
+  Destruct 2
+  Destruct 2   */
+
 ```
 
 * The `x = foo();` will
@@ -134,7 +189,7 @@ x = foo();
 * However, in the special case where the right hand side of the assignment is an rvalue, we want the copy assignment operator to act like this: `swap m_pResource and rhs.m_pResource`
   * swap resource pointers (handles) between x and the temporary,
   * let the temporary's destructor destruct x's original resource.
-* This is called move semantics.
+* This is called **move semantics**.
 
 # Move constructor and move assignment operator
 
@@ -165,5 +220,4 @@ private:
     int *_p_vals;
     int _size;
 };
-
 ```

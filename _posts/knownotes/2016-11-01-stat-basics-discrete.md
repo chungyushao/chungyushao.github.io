@@ -25,7 +25,7 @@ author: chungyu
 ![basic8]({{site.url}}/images/stat/basic8.png)
 
 # Expected Value
-![expvar1]({{site.url}}/images/stat/expvar1.png)
+ç
 ![expvar2]({{site.url}}/images/stat/expvar2.png)
 ![expvar3]({{site.url}}/images/stat/expvar3.png)
 

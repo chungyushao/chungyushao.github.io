@@ -2,7 +2,7 @@
 layout: post
 title: "C++ Constructors"
 excerpt: "Default, Copy, Converting"
-categories: knownotes
+categories: cpp
 tags: [C++]
 comments: true
 share: true
@@ -40,7 +40,7 @@ int main() {
 
 # Copy Constructor
 * A copy constructor of class `T` is a non-template constructor whose first parameter is `T&`, `const T&`, `volatile T&`, or `const volatile T&`
-* Either there are no other parameters, or the rest of the parameters all have default values.
+
 * The copy constructor is called whenever an object is initialized **from another object of the same type**
   * (unless overload resolution selects a better match or the call is elided), which includes
   * initialization: `T a = b;` or `T a(b);`, where `b` is of type `T`;

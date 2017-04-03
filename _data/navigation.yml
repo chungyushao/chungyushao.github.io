@@ -3,14 +3,17 @@
 - title: About
   url: /about/
 
+- title: Knowledge Notes
+  url: /knownotes/
+
+- title: C++
+  url: /cpp/  
+
 - title: Data Structure and Algorithm
   url: /dsnalgo/
 
 - title: Development Notes
   url: /devnotes/
-
-- title: Knowledge Notes
-  url: /knownotes/
 
 - title: Life Notes
   url: /life/

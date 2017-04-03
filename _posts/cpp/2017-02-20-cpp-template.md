@@ -2,7 +2,7 @@
 layout: post
 title: "C++ Template"
 excerpt: "Templated class, Templated functions"
-categories: knownotes
+categories: cpp
 tags: [C++]
 comments: true
 share: true

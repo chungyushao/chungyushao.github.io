@@ -2,7 +2,7 @@
 layout: post
 title: "C++ input/output stream"
 excerpt: ""
-categories: knownotes
+categories: cpp
 tags: [C++]
 comments: true
 share: true
