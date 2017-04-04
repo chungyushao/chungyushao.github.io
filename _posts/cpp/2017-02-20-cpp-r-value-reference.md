@@ -12,7 +12,8 @@ author: chungyu
 > Noted from
 > * [C++ Rvalue References Explained By Thomas Becker](http://thbecker.net/articles/rvalue_references/section_01.html)
 > * [Cprogramming.com by Alex Allain](http://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html)
-? * [cplusplus.com](http://www.cplusplus.com/articles/y8hv0pDG/)
+> * [cplusplus.com](http://www.cplusplus.com/articles/y8hv0pDG/)
+> * [Effective Morder C++](http://shop.oreilly.com/product/0636920033707.do)
 
 
 ```cpp
@@ -119,7 +120,20 @@ string& name = getName(); // NOT ok
 
 > So rvalue reference can also be considered as a way to bind a mutable reference to an rvalue
 
+# Summary of lvalue and rvalue
+* A useful heuristic to determine whether an expression is an lvalue is to ask if you can take its address. If you can, it typically is. If you can’t, it’s usually an rvalue.
+* When dealing with a parameter of rvalue reference type, because the parameter itself is an lvalue.
+
+```cpp
+class Widget {
+public:
+     Widget(Widget&& rhs); // rhs is an lvalue, though it has
+     ...                   // an rvalue reference type
+};
+```
+
 # Rvalue reference
+
 ```cpp
 const string&& name = getName(); // ok
 string && name = getName(); // also ok
