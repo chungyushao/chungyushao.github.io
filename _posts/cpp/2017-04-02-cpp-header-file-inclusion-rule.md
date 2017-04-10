@@ -139,4 +139,60 @@ class B {
 int main (...) {
   A a; B b;
 }
-```  
+```
+
+# Example I met: two classes need each other
+
+```cpp
+//a.h
+struct B;
+struct A {
+	A() {}
+	void setB(B* b) { b_ = b; }
+	void ACallB();
+	void helloFromA();
+	B* b_;
+};
+
+//a.cpp
+#include <iostream>
+#include "A.h"
+#include "B.h"
+
+void A::ACallB() { b_->helloFromB(); }
+void A::helloFromA() { std::cout << "Hello form A\n"; }
+
+//-----------------------------------------------------
+//b.h
+struct A;
+struct B {
+	B() {}
+	void setA(A* a) { a_ = a; }
+	void BCallA();
+	void helloFromB();
+	A* a_;
+};
+
+//b.cpp
+#include <iostream>
+#include "B.h"
+#include "A.h"
+
+void B::BCallA() { a_->helloFromA(); }
+void B::helloFromB() { std::cout << "Hello form B\n"; }
+
+//-----------------------------------------------------
+
+//main.cpp
+#include "a.h"
+#include "b.h"
+
+int main() {
+	A* a = new A();
+	B* b = new B();
+	a->setB(b); b->setA(a);
+	a->ACallB();
+	b->BCallA();
+	delete a; delete b;
+}
+```
