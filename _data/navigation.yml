@@ -7,7 +7,10 @@
   url: /knownotes/
 
 - title: C++
-  url: /cpp/  
+  url: /cpp/
+
+- title: Frontend
+  url: /frontend/  
 
 - title: Data Structure and Algorithm
   url: /dsnalgo/

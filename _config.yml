@@ -1,8 +1,8 @@
 # Site wide configuration
 
-title: Endless Learning
+title: My quick organized copy past notes!
 locale: en_US
-description: Joey's Notes
+description: Joey's Random Notes
 logo: site-logo.png
 search: true
 url: https://chungyushao.github.io/
@@ -39,7 +39,7 @@ exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.
 owner:
   name: Chung-Yu Shao
   avatar: bio-photo.jpg
-  email: 
+  email:
   disqus-shortname:
   twitter: #username
   facebook: #username
