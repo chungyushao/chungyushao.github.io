@@ -8,30 +8,47 @@ comments: true
 share: true
 author: chungyu
 ---
-> * [C++11: unique_ptr](http://www.drdobbs.com/cpp/c11-uniqueptr/240002708)
+
+> * [cplusplus.com](http://www.cplusplus.com/reference/memory/unique_ptr/)
 > * [stackoverflow](http://stackoverflow.com/questions/8114276/how-do-i-pass-a-unique-ptr-argument-to-a-constructor-or-a-function)
 
-#
-* The class template `unique_ptr<T>` manages a pointer to an object of type `T`.
-* You will usually construct an object of this type by calling new to create an object in the `unique_ptr` constructor: `std::unique_ptr<foo> p( new foo(42) );` or `std::make_unique<foo>(42)` as in C++14.
-* After calling the constructor, you can use the object very much like a raw pointer.
-* The `*` and `->` operators work exactly like you would expect, and are very efficient — usually generating nearly the same assembly code as raw pointer access.
 
-# Benefit
-* automatic destruction of the contained object when the pointer goes out of scope.
-* You don't have to track every possible exit point from a routine to make sure the object is freed properly — it is done automatically.
-* And more importantly, it will be destroyed if your function exits via an exception.
-* With the addition of rvalue references and move semantics `unique_ptr` objects can be stored in containers, work properly when containers are resized or moved, and will still be destroyed when the container is destroyed.
+# Introduction
 
-# Ownership
+* Manages the storage of a pointer, providing a limited garbage-collection facility, with little to no overhead over built-in pointers **(depending on the deleter used)**.
+
+* These objects have the ability of taking ownership of a pointer: once they take ownership they manage the pointed object **by becoming responsible for its deletion at some point**.
+
+* `unique_ptr` objects automatically delete the object they manage (using a deleter)
+  * **as soon as they themselves are destroyed**,
+  * or as soon as their value changes either by an **assignment operation** or by an explicit call to `unique_ptr::reset`.
+
+* `unique_ptr` objects own their pointer uniquely:
+  * no other facility shall take care of deleting the object, and thus no other managed pointer should point to its managed object,
+  * since as soon as they have to, `unique_ptr` objects delete their managed object without taking into account whether other pointers still point to the same object or not, and thus leaving any other pointers that point there as pointing to an invalid location.
+
+* A unique_ptr object has two components:
+  * a stored pointer: the pointer to the object it manages. This is set on construction, can be altered by an assignment operation or by calling member `reset`, and can be individually accessed for reading using members `get` or `release`.
+  * a stored deleter: a callable object that takes an argument of the same type as the stored pointer and is called to delete the managed object. It is set on construction, can be altered by an assignment operation, and can be individually accessed using member `get_deleter`.
+
+* unique_ptr objects replicate a limited pointer functionality by providing access to its managed object through operators `*` and `->` (for individual objects), or operator `[]` (for array objects).
+* For safety reasons, they do not support pointer arithmetics, and **only support move assignment (disabling copy assignments)**.
+
+
+# How do I pass a unique_ptr argument to a constructor or a function?
 
 ```cpp
-std::unique_ptr<foo> q( new foo(42) );
-v.push_back( q );
+#include <memory>
+class Base {
+public:
+    Base(){}
+    Base(unique_ptr<Base> n) : next(std::move(n)) {}
+    virtual ~Base() {}
+    void setNext(unique_ptr<Base> n) { next = std::move(n); }
+protected :
+    unique_ptr<Base> next;
+};
 ```
-* Who owns the pointer? Will the container destroy it at some point in its lifetime? Or is it still my job do so?
-* Actually you won't be able to compile here.
-* we are only allowed to have one copy of the pointer — unique ownership rules apply.
 
 ### Pass by value
 
@@ -39,7 +56,7 @@ v.push_back( q );
 * To take a unique pointer by value means that you are **transferring ownership** of the pointer to the function/object/etc in question.
 * After newBase is constructed, nextBase is guaranteed to be empty.
   * You don't own the object, and you don't even have a pointer to it anymore. It's gone.
-* This is ensured because we take the parameter by value.
+  * This is ensured because we take the parameter by value.
   * `std::move` doesn't actually move anything; it's just a fancy cast. `std::move(nextBase)` returns a `Base&&` that is an r-value reference to `nextBase`. That's all it does.
 
 ###### (2) `Base fromTemp(std::unique_ptr<Base>(new Base(...));`
@@ -58,7 +75,7 @@ v.push_back( q );
 ### Pass by const l-value reference
 ###### `Base(std::unique_ptr<Base> const &n);`
 * I don't show an implementation, because **you cannot move from a const&**.
-* By passing a const&, you are saying that the function can access the Base via the pointer, but it cannot store it anywhere. It cannot claim ownership of it.
+* By passing a `const&`, you are saying that the function can access the Base via the pointer, but it cannot store it anywhere. It cannot claim ownership of it.
 * it's always good to be able to hand someone a pointer and know that they cannot (without breaking rules of C++, like no casting away const) claim ownership of it. They can't store it. They can pass it to others, but those others have to abide by the same rules.
 
 ### Pass by r-value reference
@@ -70,12 +87,13 @@ v.push_back( q );
   * The latter is really the problem. If you see this line: `Base newBase(std::move(nextBase));`
     * You have a reasonable expectation that, after this line completes, `nextBase` should be empty. It should have been moved from. After all, you have that std::move sitting there, telling you that movement has occurred.
     * **The problem is that it hasn't. It is not guaranteed to have been moved from. It may have been moved from, but you will only know by looking at the source code. You cannot tell just from the function signature.**
+    * SINCE "`std::move` doesn't actually move anything; it's just a fancy cast!!"
 
 ### Recommendations
 
 * **By Value**: If you mean for a function to claim ownership of a unique_ptr, take it by value.
 * **By const l-value reference**: If you mean for a function to simply use the unique_ptr for the duration of that function's execution, take it by const&. Alternatively, pass a & or const& to the actual type pointed to, rather than using a unique_ptr.
-* **By r-value reference**: If a function may or may not claim ownership (depending on internal code paths), then take it by &&. But I strongly advise against doing this whenever possible.
+* **By r-value reference**: If a function may or may not claim ownership (depending on internal code paths), then take it by &&. But I strongly advise **against** doing this whenever possible.
 
 
 # Compatitble way for Legacy Code
