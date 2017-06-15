@@ -2,7 +2,7 @@
 layout: post
 title: "Perl Procedure"
 excerpt: ""
-categories: knownotes
+categories: scriptlang
 tags: [perl]
 comments: true
 share: true

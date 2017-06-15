@@ -2,7 +2,7 @@
 layout: post
 title: "Bash Scripts arguments `getopts`"
 excerpt: ""
-categories: knownotes
+categories: scriptlang
 tags: [bash]
 comments: true
 share: true

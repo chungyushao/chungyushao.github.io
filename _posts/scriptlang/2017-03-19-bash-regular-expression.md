@@ -2,7 +2,7 @@
 layout: post
 title: "Bash Scripts Regex"
 excerpt: ""
-categories: knownotes
+categories: scriptlang
 tags: [bash,regular expression]
 comments: true
 share: true

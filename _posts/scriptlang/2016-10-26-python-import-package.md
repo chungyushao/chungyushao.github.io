@@ -2,7 +2,7 @@
 layout: post
 title: "Python import related"
 excerpt: "module, import, __main__, package"
-categories: knownotes
+categories: scriptlang
 tags: [python]
 comments: true
 share: true

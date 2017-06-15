@@ -9,8 +9,11 @@
 - title: C++
   url: /cpp/
 
+- title: Script
+  url: /scriptlang/
+
 - title: Frontend
-  url: /frontend/  
+  url: /frontend/
 
 - title: Data Structure and Algorithm
   url: /dsnalgo/

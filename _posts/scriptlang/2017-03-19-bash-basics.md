@@ -2,7 +2,7 @@
 layout: post
 title: "Bash Scripts Basics"
 excerpt: ""
-categories: knownotes
+categories: scriptlang
 tags: [bash]
 comments: true
 share: true

@@ -2,7 +2,7 @@
 layout: post
 title: "Python Regular Expression"
 excerpt: "sampling distribution"
-categories: knownotes
+categories: scriptlang
 tags: [python, regular expression]
 comments: true
 share: true
