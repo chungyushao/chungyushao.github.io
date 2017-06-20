@@ -453,3 +453,241 @@ $baz = 100 ;
 print $foo ;         # prints 100
 print @foo ;         # prints 2, then 3
 ```
+
+# Scope
+* Perl supports several scoping disciplines.
+  * By default, **variables are scoped globally**.
+  * But, the keywords `my` and `local` can scope variables lexically and dynamically.
+
+### Global scope
+
+* If a variable has no explicit scope, then it is globally scoped, and it is visible to all blocks:
+
+
+```perl
+$g = 3.14 ;
+
+{
+  $g = $g * 2 ;
+}
+
+print $g ; # prints 6.28
+
+sub mod_g {
+  $g = $g / 2 ;
+}
+
+mod_g ;
+
+print $g ; # prints 3.14
+```
+
+
+### Lexical scoping
+
+* To scope variable lexically, mark it with `my`:
+
+```perl
+my $lexical_scalar ;
+my ($lexical_scalar1,$lexical_scalar2) ;
+my @lexical_array ;
+my %lexical_hash ;
+```
+
+* With lexical scoping, a variable is visible **only to the block in which it is defined, and all inner blocks**.
+
+```perl
+{
+  my $x = 3 ;
+  {
+    my $y = 10 ;
+    print $x ; # prints 3
+  }
+  print $y ; # prints nothing
+}
+```
+
+* Lexically scoped variables are also visible to **procedures defined within the block and anonymous procedures defined within the block.**
+* Anonymous subroutines “close over” their lexically scoped variables:
+
+```perl
+$x = "global x" ;
+{
+  my $x = "inner x" ;
+  $f = sub {
+    return $x ;
+  }
+}
+
+print &{$f} ; # prints "inner x" ;
+print $x ;    # prints "global x" ;
+```
+
+* The operator `my` can actually appear anywhere within the block and it will cause lexical scoping for the variable within that block, **once it’s been evaluated**:
+
+```perl
+$x = 10 ;
+{
+  $x = 3 ;   # $x is global
+  my $x = 20 ;
+  print $x ; # prints 20
+}
+print $x;    # prints 3
+
+$x = 10 ;
+{
+  goto SKIP;
+  BACK:
+  $x = 3 ;   # by the time this hits, $x is lexical
+  last ;
+
+  SKIP:
+  my $x = 20 ;
+  print $x ; # prints 20
+}
+print $x;    # prints 10
+```
+
+
+* Unfortunately, it is not hard to extend the prior example into a proof that
+> the scope of a variable in Perl is (statically) undecidable in general.
+
+* Under the hood, `my` should really be seen as both a keyword and as an operator, since a `my` expression acts like an alias for the variable(s) it receives.
+* This means it can appear almost anywhere that a variable can appear:
+
+```perl
+$x = 10 ;
+{
+  (my $x) = 20 ;
+  print $x ;      # prints 20
+}
+print $x;         # prints 10
+
+@stack = (1,2,3) ;
+
+while (my $el = pop @stack) {
+  print $el ;
+}
+
+sub half ($$) {
+  $_[1] = $_[0] / 2 ;
+}
+
+$x = 1000 ;
+{
+  half 10, (my $x) ;
+  print $x ;           # prints 5
+}
+print $x ;             # prints 1000
+
+
+$x = 10  ;
+foreach my $x (1,2,3) {
+ print $x ;
+}                     # prints 1 through 3
+print $x ;            # prints 10
+```
+
+
+### Dynamic scope
+
+* Dynamic scope could fairly be termed **stack scope**:
+  * when a local variable is evaluated, the topmost stack frame with a binding of that variable provides its value.
+
+* In Perl, the `local` keyword declares a variable to have local scope.
+* At first glance, dynamic scope seems to act like lexical scope:
+
+```perl
+{
+  local $x = 3 ;
+  {
+    local $y = 10 ;
+    print $x ;        # prints 3
+  }
+  print $y ;          # prints nothing
+}
+```
+
+
+* But, procedures can discriminate between lexical and dynamic scope:
+
+```perl
+sub get_x {
+  return $x ;
+}
+
+{
+  my $x = 10 ;
+  print get_x() ;  # prints nothing
+}
+
+{
+  # procedure recognize the local scope!
+  local $x = 10 ;   
+  print get_x() ;  # prints 10
+}
+
+print get_x() ;    # prints nothing
+```
+
+### Static (state) variables
+
+* If use feature "state" is in effect, then Perl also has a lexically scoped variables that are initialized **only once** known as state variables.
+
+* These behave similar to **static local variables** in C:
+
+```perl
+use feature "state" ;
+
+sub inc_count() {
+  state $count = 0 ;
+  return ++$count ;
+}
+
+print inc_count() ;   # prints 1
+print inc_count() ;   # prints 2
+print inc_count() ;   # prints 3
+```
+
+
+### Lexical versus dynamic versus global
+
+* The following program illustrates the difference between the three scoping disciplines:
+
+```perl
+$foo = 20 ;
+
+sub print_foo() {
+  print $foo ;
+}
+
+
+# Lexically scoped $foo:
+sub lexical_foo() {
+  my $foo = 50 ;
+  print_foo() ;
+}
+
+lexical_foo() ;  # prints 20
+print_foo() ;    # prints 20
+
+
+# Dynamically scoped $foo:
+sub dynamic_foo() {
+  local $foo = 40 ;
+  print_foo() ;
+}
+
+dynamic_foo() ;  # prints 40
+print_foo() ;    # prints 20
+
+
+# Globally scoped $foo:
+sub global_foo() {
+  $foo = 60 ;
+  print_foo() ;
+}
+
+global_foo() ;   # prints 60
+print_foo() ;    # prints 60
+```

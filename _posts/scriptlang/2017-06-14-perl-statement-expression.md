@@ -314,3 +314,284 @@ sub proc2 {
 
 print proc1 ;  # prints 42
 ```
+
+
+# Expressions
+
+* The simplest expressions in Perl are literals:
+  * string constants like 'foo' and numeric constants like 3 or 3.14.
+
+* Many complex expressions in Perl are procedure or primitive calls of some kind.
+* Most other expressions types are constructed from binary, unary or ternary operators.
+
+* Perl supports the usual arithmetic operators:
+
+```perl
+print 10 + 20 ;  # prints 30
+print 10 - 20 ;  # prints -10
+print 10 / 20 ;  # prints 0.5
+print 10 * 20 ;  # prints 200
+
+print 2 ** 3 ;   # prints 8 (exponentiation)
+```
+
+### C-style in/decrement
+
+* Perl also supports unary increment and decrement:
+
+```perl
+$foo = 13 ;
+print $foo++ ;   # prints 13
+print $foo   ;   # prints 14
+print ++$foo ;   # prints 15
+print $foo   ;   # prints 15
+
+print $foo-- ;   # prints 15
+print $foo   ;   # prints 14
+print --$foo ;   # prints 13
+print $foo   ;   # prints 13
+```
+
+
+### Boolean operators
+
+* Perl also supports the common Boolean operators:
+
+```perl
+print "and: ", (20 && 10) ;  # prints 10
+print "and: ", (0 && 20) ;   # prints 0
+
+print "or: ", (1 || 2) ;     # prints 1
+print "or: ", (0 || 1) ;     # prints 1
+
+print "not: ", !0 ;          # prints 1
+print "not: ", !42 ;         # prints nothing
+
+
+print "and: ", (20 and 10) ;  # prints 10
+print "and: ", (0 and 20) ;   # prints 0
+
+print "or: ", (1 or 2) ;      # prints 1
+print "or: ", (0 or 1) ;      # prints 1
+
+print "not: ", not 0 ;        # prints 1
+print "not: ", not 42 ;       # prints nothing
+```
+
+* The word forms of each operator act identically, but have the lowest possible precedence.
+
+### Number comparison
+
+* Perl supports the common comparison operators as well:
+
+```perl
+if (10 == 10) { print "true" }   # prints true
+if (20 == 10) { print "false" }  # prints nothing
+if (10 <= 20) { print "true" }   # prints true
+if (10 > 20) { print "false" }   # prints nothing
+```
+
+### String comparison
+
+* But, Perl requires named operators for string comparisons:
+
+```perl
+if (10 lt 20)  { print "true" }       # prints true
+if (101 lt 20) { print "yikes!" }     # prints yikes!
+if ("101" lt "20") { print "true" }   # prints true
+
+if ("cat" lt "hat") { print "true" }  # prints true
+if ("cat" gt "bat") { print "false" } # prints nothing
+if ("cat" le "cat") { print "true" }  # prints true
+if ("cat" ge "cat") { print "true" }  # prints true
+
+if ("alice" == "bob") { print "uh-oh!" } # prints uh-oh!
+if ("alice" eq "bob") { print "false" }  # prints nothing
+if ("cat" eq "cat") { print "true" }     # prints true
+```
+
+### Bitwise operator
+
+* Perl allows C-like bitwise and bitshift operators `&,` `|`, `~`, `<<` and `>>` – as well, but caution should be taken when using them, since their **interpretation changes depending on whether use integer or use bigint** are in effect.
+
+* To a get a sense of how these operators work, we can use printf to print binary:
+
+```perl
+$a = 23 ;
+$b = 71 ;
+printf "%b\n", $a ;       # prints   10111
+printf "%b\n", $b ;       # prints 1000111
+
+printf "%b\n", $a & $b ;  # prints     111
+printf "%b\n", $a | $b ;  # prints 1010111
+printf "%b\n", ~$a ;      # prints
+ # 1111111111111111111111111111111111111111111111111111111111101000
+```
+
+### One line if else (ternary)
+
+* Perl supports a C-style ternary operator for conditionals too:
+
+```perl
+$name = "Alice" ;
+print ($name eq "Alice" ? 1 : 2) ;  # prints 1
+```
+
+### `.` operator
+
+* Some Perl operators are different, or have no counterpart in other languages.
+* The dot operator `.` is concatenation:
+
+```perl
+$foo = "Hello, " ;
+$bar = "world!" ;
+$foobar = $foo . $bar ;
+print $foobar ;          # prints Hello, world!
+```
+
+### `x` operator
+
+* The repetition operator `x` repeats a scalar (coerced to a list) or a list, depending on context:
+
+```perl
+$rrr = "r" x 10 ;
+print $rrr ;       # prints rrrrrrrrrr
+
+@rrr = ("r") x 10 ;
+print "@rrr" ;     # prints r r r r r r r r r r
+
+@rrr = "r" x 10 ;
+print "@rrr" ;     # prints rrrrrrrrrr
+
+@nums = (1,2) x 5 ;
+print "@nums" ;    # prints 1 2 1 2 1 2 1 2 1 2
+```
+
+### `~~` operator
+
+* The parentheses on the left-hand side are required to force the list context.
+* The operator `~~` is “smartmatch,” which has “smart” comparison behavior:
+
+```perl
+@arr1 = (1,2,3) ;
+@arr2 = (2,3) ;
+
+@keys = ("foo") ;
+%hash = (foo => 42, bar => 1701) ;
+
+print "match" if @arr1 ~~ \@arr1 ; # prints match
+print "match" if @arr2 ~~ @arr1 ;  # prints nothing
+
+print "match" if @keys ~~ %hash ; # prints match
+```
+
+* To predict the behavior of smartmatch, consult the offical Perl docs.
+
+
+### `...` operator
+
+* In a list context, the range operator `...` produces an array starting with the left-hand side and going up to the right-hand side:
+
+```perl
+@range = 3...6 ;
+print "@range" ;  # prints 3 4 5 6
+```
+
+* In scalar context, the `...` operator has a very different interpretation; the scalar `...` operator is meant to emulate the range behavior of `awk` and `sed`.
+
+* In a scalar context, `lhs ... rhs` will be false until lhs evaluates to true. Then, it will be true until after rhs evaluates to false. Then, it will evaluate to false and wait for lhs to be true again:
+
+```perl
+$i = 0 ;
+while ($i < 10) {
+  print $i if ($i == 3) ... ($i == 7) ;
+  $i++ ;
+} # prints 3 through 7
+```
+
+
+* By introducing a toggle variable, the above code could be rewritten:
+
+```perl
+$toggle = true ;
+$toggle = 1 ;
+$i = 0 ;
+while ($i < 10) {
+  print $i if  ($toggle ? (($i == 3) ? !($toggle = 0) : 0)
+                        : (($i == 7) ?  ($toggle = 1) : 1)) ;
+  $i++ ;
+} # prints 3 through 7
+```
+
+* Of course, one naturally wonders in which block this implicit `$toggle` variable lives.
+* It could be the nearest enclosing block, or it could be the nearest enclosing procedure.
+
+> It appears that they are **lexically scoped to the nearest procedure**, which leads to suprises:
+
+```perl
+sub proc {  
+
+  my @a = (1,2) ;
+  my @b = (1,2,3,4) ;
+
+  foreach my $a (@a) {  # execute this loop twice
+    foreach my $b (@b) {
+
+      my $flip = ($b == 3) ... ($b == 11) ;
+
+      if ($flip) {
+        print "\$b: 3 <= $b <= 11" ;
+      }
+    }
+  }
+}
+
+proc() ;  # prints:
+
+# $b: 3 <= 3 <= 11  # OK
+# $b: 3 <= 4 <= 11  # OK
+# $b: 3 <= 1 <= 11  # uh-oh!
+# $b: 3 <= 2 <= 11  # uh-oh!
+# $b: 3 <= 3 <= 11  # looks OK, but it's not
+# $b: 3 <= 4 <= 11  # looks OK, but it's not
+```
+
+
+* Constants have a special interpretation if they appear in a `...` operator.
+* A constant implicitly compares for equality against the current line number of the input (stored in the variable `$.`).
+
+* The following program will print first 10 lines of input:
+
+```perl
+while (<>) {
+ print if 1 ... 10 ;
+}
+```
+  * because it is equivalent to:
+
+```perl
+while (<>) {
+ print if ($. == 1) ... ($. == 10) ;
+}
+```
+
+### `..` operator v.s `...` operator
+
+* The `..` operator is an alternative to `...` with a minor difference:
+  * in the scalar context, `..` will test the right-hand side when the left-hand side matches.
+  * If both match, then the `..` evaluates to true once, and then resumes evaluating to false:
+
+```perl
+$i = 0 ;
+while ($i < 10) {
+  print $i if ($i == 3) .. ($i == 3) ;
+  $i++ ;
+} # prints only 3
+
+
+$i = 0 ;
+while ($i < 10) {
+  print $i if ($i == 3) ... ($i == 3) ;
+  $i++ ;
+} # prints 3 through 9
+```
