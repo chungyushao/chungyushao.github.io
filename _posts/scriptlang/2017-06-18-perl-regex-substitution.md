@@ -224,15 +224,17 @@ print "no"  if $fb =~ qr/ap*le/ ;  # does not print
 ```
 
 
+* With regular expression quotes, interpolation of variables is allowed, as it is in doubly-quoted stings:
 
-With regular expression quotes, interpolation of variables is allowed, as it is in doubly-quoted stings:
-
+```perl
 $rx = "foo|bar" ;
 
 print "match" if "foobar" =~ /$rx/ ;     # prints match
 print "match" if "foobar" =~ /x${rx}x/ ; # prints nothing
                                          # tries to match xfoo|barx
-Extracting matches from regular expressions
+```
+
+### Extracting matches from regular expressions
 
 Directly after a successful match, Perl binds variables to submatches.
 
